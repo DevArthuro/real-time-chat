@@ -1,0 +1,56 @@
+version: '3.9'
+
+services:
+  database:
+    container_name: postgres
+    image: postgres:16rc1
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_DB=realtime
+    ports:
+      - "5500:5432"
+    volumes:
+      - ./backend/database:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+    restart: "always"
+    networks:
+      - realtime
+
+  backend:
+    container_name: backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      - HOST_DB=database
+      - PORT_DB=5432
+      - USER_DB=postgres
+      - PASSWORD_DB=12345
+      - NAME_DB=realtime
+    ports:
+      - "8080:8000"
+    volumes:
+      - ./backend:/home/src
+    depends_on:
+      database:
+        condition: service_healthy
+    restart: always
+    networks:
+      realtime:
+        ipv4_address: 192.168.10.14
+        
+networks:
+  realtime:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.10.0/24
+
+
+

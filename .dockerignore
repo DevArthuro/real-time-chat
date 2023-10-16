@@ -1,0 +1,4 @@
+venv
+backend/Dockerfile
+backend/database
+.gitignore
