@@ -33,7 +33,7 @@ services:
       - PASSWORD_DB=12345
       - NAME_DB=realtime
     ports:
-      - "8080:8000"
+      - "0.0.0.0:8080:8000"
     volumes:
       - ./backend:/home/src
     depends_on:
@@ -41,8 +41,7 @@ services:
         condition: service_healthy
     restart: always
     networks:
-      realtime:
-        ipv4_address: 192.168.10.14
+      realtime: {}
         
 networks:
   realtime:
