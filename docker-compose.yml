@@ -42,7 +42,19 @@ services:
     restart: always
     networks:
       realtime: {}
-        
+  
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    ports:
+      - "8081:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=carlitorrego123@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=12345
+    restart: "always"
+    networks:
+      realtime: {}
+
 networks:
   realtime:
     driver: bridge
