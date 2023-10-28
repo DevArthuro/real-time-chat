@@ -9,9 +9,8 @@ def index(request):
     }
     return render(request, 'chat/dashboard.html', context)
 
-class DetailView(View):
-    def get(self, request, slug):
-        context = {
-            "title": slug
-        }
-        return render(request, "chat/detail-chat.html", context)
+def datail(request, slug):
+    context = {
+        "title": slug
+    }
+    return render(request, "chat/detail-chat.html", context)

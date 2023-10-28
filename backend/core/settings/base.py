@@ -18,7 +18,8 @@ EXTERNAL_APPS = [
 ]
 
 OWNER_APPS = [
-    "chat"
+    "chat",
+    "user_app"
 ]
 
 INSTALLED_APPS = [
@@ -43,7 +44,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / "chat/templates"
+            BASE_DIR / "chat/templates",
+            BASE_DIR / "user_app/templates"
         ],
         'APP_DIRS': True,
         'OPTIONS': {
