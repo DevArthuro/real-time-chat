@@ -1,7 +1,16 @@
 from django.shortcuts import render
+from django.views import View
 
 def index(request):
     context = {
-        "name": "carlos"
+        "title": "dashboard",
+        "counter": 100,
+        "data": (0,0,0,0,0,0,0)
     }
-    return render(request, 'index.html', context)
+    return render(request, 'chat/dashboard.html', context)
+
+def datail(request, slug):
+    context = {
+        "title": slug
+    }
+    return render(request, "chat/detail-chat.html", context)

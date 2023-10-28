@@ -3,5 +3,6 @@ from . import views
 
 
 urlpatterns = [
-    path("index/", views.index, name="index")
+    path("", views.index, name="index"),
+    path("<str:slug>", views.datail, name="detail")
 ]
